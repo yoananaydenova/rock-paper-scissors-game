@@ -1,9 +1,11 @@
 package com.yoanan.RPSGame.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public class MoveDto {
+    @JsonProperty("game-id")
     @NotNull(message = "The game is required.")
     private Long gameId;
 
