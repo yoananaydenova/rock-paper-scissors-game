@@ -16,6 +16,11 @@ public class MoveDto {
     public MoveDto() {
     }
 
+    public MoveDto(Long gameId, String move) {
+        this.gameId = gameId;
+        this.move = move;
+    }
+
     public Long getGameId() {
         return gameId;
     }
