@@ -10,4 +10,6 @@ public interface GameService {
     ResultGameDto playGame(MoveDto moveDto);
 
     ResultGameDto stopGame(Long id);
+
+    ResultGameDto findGame(Long gameId);
 }
