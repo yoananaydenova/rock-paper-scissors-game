@@ -6,11 +6,11 @@ import jakarta.validation.constraints.NotNull;
 
 public class MoveDto {
     @JsonProperty("game-id")
-    @NotNull(message = "The game is required.")
+    @NotNull(message = "The game id is required!")
     private Long gameId;
 
-    @NotNull(message = "The move is required.")
-    @NotBlank(message = "The move is required.")
+    @NotNull(message = "The move is required!")
+    @NotBlank(message = "The move is required!")
     private String move;
 
     public MoveDto() {

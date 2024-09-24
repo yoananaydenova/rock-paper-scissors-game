@@ -6,7 +6,7 @@ public class GameDto {
 
     private Long id;
 
-    @Min(1)
+    @Min(value = 1, message = "The attempts value must be greater than or equal to 1!")
     private int attempts;
 
     public GameDto() {
