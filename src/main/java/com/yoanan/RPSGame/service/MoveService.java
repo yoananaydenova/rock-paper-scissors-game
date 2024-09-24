@@ -3,7 +3,7 @@ package com.yoanan.RPSGame.service;
 import com.yoanan.RPSGame.model.GameMove;
 import com.yoanan.RPSGame.model.Player;
 
-public interface WinnerCalculatorService {
+public interface MoveService {
 
     void setUserMove(GameMove playerMove);
 

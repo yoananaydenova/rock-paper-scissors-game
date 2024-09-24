@@ -10,7 +10,7 @@ import com.yoanan.RPSGame.mapper.GameMapper;
 import com.yoanan.RPSGame.model.*;
 import com.yoanan.RPSGame.repository.GameRepository;
 import com.yoanan.RPSGame.service.GameService;
-import com.yoanan.RPSGame.service.WinnerCalculatorService;
+import com.yoanan.RPSGame.service.MoveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,14 +20,14 @@ public class GameServiceImpl implements GameService {
 
     private final GameRepository gameRepository;
     private final GameMapper gameMapper;
-    private final WinnerCalculatorService winnerCalculator;
+    private final MoveService moveService;
 
 
     @Autowired
-    public GameServiceImpl(GameRepository gameRepository, GameMapper gameMapper, WinnerCalculatorService winnerCalculator) {
+    public GameServiceImpl(GameRepository gameRepository, GameMapper gameMapper, MoveService winnerCalculator) {
         this.gameRepository = gameRepository;
         this.gameMapper = gameMapper;
-        this.winnerCalculator = winnerCalculator;
+        this.moveService = winnerCalculator;
     }
 
     @Override
@@ -45,7 +45,7 @@ public class GameServiceImpl implements GameService {
             throw new NoSuchMoveException("This game is finished! Create another game!");
         }
 
-        final Player winner = this.winnerCalculator.calculateMoveWinner(moveDto.getMove().trim());
+        final Player winner = this.moveService.calculateMoveWinner(moveDto.getMove().trim());
 
         final Game savedGame = saveScoreInGame(game, winner);
 
