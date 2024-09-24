@@ -23,7 +23,7 @@ public class GameController {
 
     @GetMapping("/")
     public String home() {
-        return "Hey! You can play RSP here!";
+        return "Hey! You can play Rock, Paper, Scissors here!";
     }
 
     @PostMapping("/start")
@@ -32,12 +32,11 @@ public class GameController {
         return ResponseEntity.ok(savedGame);
     }
 
-    @PostMapping("/game")
+    @PutMapping("/game")
     public ResponseEntity<ResultGameDto> playGame(@Valid @RequestBody MoveDto moveDto) {
         final ResultGameDto resultGame = gameService.playGame(moveDto);
         return ResponseEntity.ok(resultGame);
     }
-
 
     @GetMapping("/game/{gameId}")
     public ResponseEntity<ResultGameDto> getGame(@PathVariable Long gameId) {
@@ -45,7 +44,7 @@ public class GameController {
         return ResponseEntity.ok(resultGame);
     }
 
-    @PostMapping("/stop/{gameId}")
+    @PutMapping("/stop/{gameId}")
     public ResponseEntity<ResultGameDto> stopGame(@PathVariable Long gameId) {
         final ResultGameDto resultGame = gameService.stopGame(gameId);
         return ResponseEntity.ok(resultGame);
