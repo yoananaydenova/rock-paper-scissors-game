@@ -1,25 +1,38 @@
 package com.yoanan.RPSGame.model;
+
 import jakarta.persistence.*;
+import org.hibernate.annotations.ColumnDefault;
 
 @Entity
 @Table(name = "games")
 public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id", nullable = false, updatable = false)
+    @Column(name = "id", nullable = false, updatable = false)
     private Long id;
 
-    @Column(name="attempts", nullable = false)
+    @Column(name = "attempts", nullable = false)
+    @ColumnDefault("1")
     private int attempts;
 
-    @Column(name="userScore")
+    @Column(name = "currentAttempt", nullable = false)
+    @ColumnDefault("0")
+    private int currentAttempt;
+
+    @Column(name = "userScore")
+    @ColumnDefault("0")
     private int userScore;
 
-    @Column(name="computerScore")
+    @Column(name = "computerScore")
+    @ColumnDefault("0")
     private int computerScore;
 
-    @Column(name="drawScore")
+    @Column(name = "drawScore")
+    @ColumnDefault("0")
     private int drawScore;
+
+    @Column(name = "isFinished")
+    private boolean isFinished = false;
 
     public Game() {
     }
@@ -68,16 +81,37 @@ public class Game {
         this.drawScore = drawScore;
     }
 
-
-    public void increaseUserScore(){
-        this.userScore = this.userScore+1;
+    public int getCurrentAttempt() {
+        return currentAttempt;
     }
 
-    public void increaseComputerScore(){
-        this.computerScore = this.computerScore+1;
+    public void setCurrentAttempt(int currentAttempt) {
+        this.currentAttempt = currentAttempt;
     }
 
-    public void increaseDrawScore(){
-        this.drawScore = this.drawScore+1;
+    public boolean isFinished() {
+        return isFinished;
     }
+
+    public Game setFinished(boolean finished) {
+        isFinished = finished;
+        return this;
+    }
+
+    public void increaseUserScore() {
+        this.userScore++;
+    }
+
+    public void increaseComputerScore() {
+        this.computerScore++;
+    }
+
+    public void increaseDrawScore() {
+        this.drawScore++;
+    }
+
+    public void increaseCurrentAttempt() {
+        this.currentAttempt++;
+    }
+
 }
