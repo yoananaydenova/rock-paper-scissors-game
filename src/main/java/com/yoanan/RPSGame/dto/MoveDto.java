@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public class MoveDto {
-    @JsonProperty("game-id")
+    @JsonProperty("id")
     @NotNull(message = "The game id is required!")
     private Long gameId;
 
