@@ -49,7 +49,7 @@ There are Integration and Unit tests of some basic functionalities.
  - Clone the application
 
 ```bash
-git clone  https://github.com/yoananaydenova/rock-paper-scissors-game.git
+git clone https://github.com/yoananaydenova/rock-paper-scissors-game.git
 ```
 
  - Change mysql username and password as per your installation
