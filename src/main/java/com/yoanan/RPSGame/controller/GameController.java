@@ -27,21 +27,27 @@ public class GameController {
     }
 
     @PostMapping("/start")
-    public ResponseEntity<GameDto> createGame(@Valid @RequestBody  GameDto gameDto) {
+    public ResponseEntity<GameDto> createGame(@Valid @RequestBody GameDto gameDto) {
         final GameDto savedGame = gameService.createGame(gameDto.getAttempts());
         return ResponseEntity.ok(savedGame);
     }
 
     @PostMapping("/game")
-    private ResponseEntity<ResultGameDto> playGame(@Valid @RequestBody MoveDto moveDto) {
+    public ResponseEntity<ResultGameDto> playGame(@Valid @RequestBody MoveDto moveDto) {
         final ResultGameDto resultGame = gameService.playGame(moveDto);
         return ResponseEntity.ok(resultGame);
     }
 
 
-    @PostMapping("/stop")
-    private ResponseEntity<ResultGameDto> stopGame(@Valid @RequestBody GameDto gameDto) {
-        final ResultGameDto resultGame = gameService.stopGame(gameDto.getId());
+    @GetMapping("/game/{gameId}")
+    public ResponseEntity<ResultGameDto> getGame(@PathVariable Long gameId) {
+        final ResultGameDto resultGame = gameService.findGame(gameId);
+        return ResponseEntity.ok(resultGame);
+    }
+
+    @PostMapping("/stop/{gameId}")
+    public ResponseEntity<ResultGameDto> stopGame(@PathVariable Long gameId) {
+        final ResultGameDto resultGame = gameService.stopGame(gameId);
         return ResponseEntity.ok(resultGame);
     }
 
