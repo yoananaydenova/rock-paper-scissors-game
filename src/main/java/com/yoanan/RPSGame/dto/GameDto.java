@@ -1,9 +1,10 @@
 package com.yoanan.RPSGame.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Min;
 
 public class GameDto {
-
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
 
     @Min(value = 1, message = "The attempts value must be greater than or equal to 1!")
