@@ -8,7 +8,7 @@ import com.yoanan.RPSGame.mapper.GameMapper;
 import com.yoanan.RPSGame.model.*;
 import com.yoanan.RPSGame.repository.GameRepository;
 import com.yoanan.RPSGame.service.GameService;
-import com.yoanan.RPSGame.service.WinnerCalculator;
+import com.yoanan.RPSGame.service.WinnerCalculatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,15 +16,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class GameServiceImpl implements GameService {
 
-
     private final GameRepository gameRepository;
     private final GameMapper gameMapper;
-
-    private final WinnerCalculator winnerCalculator;
+    private final WinnerCalculatorService winnerCalculator;
 
 
     @Autowired
-    public GameServiceImpl(GameRepository gameRepository, GameMapper gameMapper, WinnerCalculator winnerCalculator) {
+    public GameServiceImpl(GameRepository gameRepository, GameMapper gameMapper, WinnerCalculatorService winnerCalculator) {
         this.gameRepository = gameRepository;
         this.gameMapper = gameMapper;
         this.winnerCalculator = winnerCalculator;
@@ -56,10 +54,10 @@ public class GameServiceImpl implements GameService {
     }
 
     private Player calculateWinner(MoveDto moveDto) {
-        final GameMove playerMove = WinnerCalculator.getMove(moveDto.getMove().trim());
+        final GameMove playerMove = WinnerCalculatorServiceImpl.getMove(moveDto.getMove().trim());
         this.winnerCalculator.setPlayerMove(playerMove);
 
-        final GameMove computerMove = WinnerCalculator.generateComputerMove();
+        final GameMove computerMove = WinnerCalculatorServiceImpl.generateComputerMove();
         this.winnerCalculator.setComputerMove(computerMove);
 
         return this.winnerCalculator.calculateWinner();

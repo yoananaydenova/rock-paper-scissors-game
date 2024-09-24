@@ -1,7 +1,8 @@
-package com.yoanan.RPSGame.service;
+package com.yoanan.RPSGame.service.impl;
 
 import com.yoanan.RPSGame.exception.NoSuchMoveException;
 import com.yoanan.RPSGame.model.*;
+import com.yoanan.RPSGame.service.WinnerCalculatorService;
 import org.springframework.stereotype.Service;
 
 import java.util.AbstractMap;
@@ -10,7 +11,7 @@ import java.util.Random;
 
 
 @Service
-public class WinnerCalculator {
+public class WinnerCalculatorServiceImpl implements WinnerCalculatorService {
     public static final Map<String, GameMove> gameMoves = Map.ofEntries(
             new AbstractMap.SimpleEntry<>("1", RockMove.getInstance()),
             new AbstractMap.SimpleEntry<>("2", PaperMove.getInstance()),
@@ -24,7 +25,7 @@ public class WinnerCalculator {
     private GameMove computerMove = RockMove.getInstance();
     private GameMove playerMove = RockMove.getInstance();
 
-    public WinnerCalculator() {
+    public WinnerCalculatorServiceImpl() {
     }
 
     public static GameMove generateComputerMove() {
@@ -59,10 +60,10 @@ public class WinnerCalculator {
 
     public static GameMove getMove(String move) {
 
-        if (!WinnerCalculator.gameMoves.containsKey(move)) {
+        if (!WinnerCalculatorServiceImpl.gameMoves.containsKey(move)) {
             throw new NoSuchMoveException("Game move should exist!");
         }
-        return WinnerCalculator.gameMoves.get(move);
+        return WinnerCalculatorServiceImpl.gameMoves.get(move);
     }
 
     private static int generateMoveCode() {
