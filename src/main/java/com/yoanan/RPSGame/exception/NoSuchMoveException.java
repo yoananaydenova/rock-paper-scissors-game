@@ -1,4 +1,4 @@
-package com.yoanan.RPSGame;
+package com.yoanan.RPSGame.exception;
 
 public class NoSuchMoveException extends IllegalArgumentException{
     public NoSuchMoveException() {
