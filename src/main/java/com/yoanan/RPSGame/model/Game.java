@@ -67,4 +67,17 @@ public class Game {
     public void setDrawScore(int drawScore) {
         this.drawScore = drawScore;
     }
+
+
+    public void increaseUserScore(){
+        this.userScore = this.userScore+1;
+    }
+
+    public void increaseComputerScore(){
+        this.computerScore = this.computerScore+1;
+    }
+
+    public void increaseDrawScore(){
+        this.drawScore = this.drawScore+1;
+    }
 }

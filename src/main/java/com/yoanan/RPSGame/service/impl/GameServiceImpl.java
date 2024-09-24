@@ -4,6 +4,7 @@ import com.yoanan.RPSGame.dto.ResultGameDto;
 import com.yoanan.RPSGame.exception.NoSuchGameException;
 import com.yoanan.RPSGame.dto.GameDto;
 import com.yoanan.RPSGame.dto.MoveDto;
+import com.yoanan.RPSGame.exception.NoSuchPlayerException;
 import com.yoanan.RPSGame.mapper.GameMapper;
 import com.yoanan.RPSGame.model.*;
 import com.yoanan.RPSGame.repository.GameRepository;
@@ -65,16 +66,13 @@ public class GameServiceImpl implements GameService {
 
     private Game saveScoreInGame(Long gameId, Player winner) {
         final Game game = getGame(gameId);
-        if (Player.USER.equals(winner)) {
-            game.setUserScore(game.getUserScore() + 1);
-        }
-        if (Player.COMPUTER.equals(winner)) {
-            game.setComputerScore(game.getComputerScore() + 1);
-        }
-        if (Player.DRAW.equals(winner)) {
-            game.setDrawScore(game.getComputerScore() + 1);
-        }
 
+        switch (winner){
+            case USER -> game.increaseUserScore();
+            case COMPUTER -> game.increaseComputerScore();
+            case DRAW -> game.increaseDrawScore();
+            default -> throw new NoSuchPlayerException(String.format("Player %s doesn't exist!", winner));
+        }
         return saveGame(game);
     }
 
