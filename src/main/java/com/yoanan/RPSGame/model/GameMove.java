@@ -1,5 +1,6 @@
 package com.yoanan.RPSGame.model;
 
-public abstract class GameMoveI {
+public interface GameMove {
+    GameMove defeatedBy();
 
 }
