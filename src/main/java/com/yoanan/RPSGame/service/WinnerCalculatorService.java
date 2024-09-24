@@ -5,9 +5,10 @@ import com.yoanan.RPSGame.model.Player;
 
 public interface WinnerCalculatorService {
 
-    void setPlayerMove(GameMove playerMove);
+    void setUserMove(GameMove playerMove);
 
     void setComputerMove(GameMove computerMove);
 
-    Player calculateWinner();
+    Player calculateMoveWinner(String userMoveStr);
+
 }
