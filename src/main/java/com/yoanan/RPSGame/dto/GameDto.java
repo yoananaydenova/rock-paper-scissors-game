@@ -12,6 +12,10 @@ public class GameDto {
     public GameDto() {
     }
 
+    public GameDto(int attempts) {
+        this.attempts = attempts;
+    }
+
     public GameDto(Long id, int attempts) {
         this.id = id;
         this.attempts = attempts;
