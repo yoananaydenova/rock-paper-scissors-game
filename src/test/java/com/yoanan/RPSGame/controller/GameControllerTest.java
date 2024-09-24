@@ -43,7 +43,7 @@ public class GameControllerTest {
                         .content("""
                                 {
                                     "attempts": 5
-                                }"""))  // JSON representation of the GameDto
+                                }"""))
                 .andExpect(status().isOk());
     }
 
@@ -59,17 +59,15 @@ public class GameControllerTest {
                 .setComputerScore(0)
                 .setDrawScore(1);
 
-        MoveDto moveDto = new MoveDto(1L, "paper");
-
         given(gameService.playGame(any(MoveDto.class))).willReturn(resultGameDto);
 
         mockMvc.perform(put("/game")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
                                 {
-                                    "game-id":1,
+                                    "id":1,
                                     "move":"scissors"
-                                }"""))  // JSON representation of the ResultGameDto
+                                }"""))
                 .andExpect(status().isOk());
     }
 
